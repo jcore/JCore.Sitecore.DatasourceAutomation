@@ -1,0 +1,38 @@
+﻿---
+ID: "1fdd6561-b878-44cc-bae2-f44a87c9dec5"
+Parent: "77c94e73-5cfb-4548-b7cc-bfe5790b79a3"
+Template: "94a8c8e9-690b-4e65-98e7-f95800222767"
+Path: /sitecore/content/CAR/Home/Zipforma/Forms Advisor Forms Tutor
+DB: master
+SharedFields:
+- ID: "43533608-7316-4255-9217-09f755c51dc6"
+  Hint: Datasource Folder
+  Value: "{F1013F3C-FEDC-41D7-B651-67EC0743D719}"
+- ID: "ba3f86a2-4a1c-4d78-b63d-91c2779c1b5e"
+  Hint: __Sortorder
+  Value: 300
+- ID: "f1a1fe9e-a60c-4ddb-a3a0-bb5b29fe732e"
+  Hint: __Renderings
+  Type: layout
+  Value: 
+Languages:
+- Language: en
+  Fields:
+  - ID: "b5e02ad9-d56f-4c41-a065-a133db87bdeb"
+    Hint: __Display name
+    Value: Forms Advisor™ & Forms Tutor®
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "1f5b8fc6-7441-478a-9426-a247d0d06971"
+      Hint: NavigationTitle
+      Value: Forms Advisor Forms Tutor
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20170516T161100Z
+    - ID: "c30a013f-3cc8-4961-9837-1c483277084a"
+      Hint: Title
+      Value: Forms Advisor Forms Tutor
+    - ID: "ca0479ce-0bfe-4522-83de-ba688b380a78"
+      Hint: BrowserTitle
+      Value: Forms Advisor Forms Tutor

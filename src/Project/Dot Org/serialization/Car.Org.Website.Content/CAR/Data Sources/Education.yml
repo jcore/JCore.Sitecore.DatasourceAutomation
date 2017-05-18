@@ -1,0 +1,14 @@
+﻿---
+ID: "a58e249f-33e4-40ef-a7d1-33704d9b1865"
+Parent: "1d4d3540-9f48-4275-b466-66d2c73e2e54"
+Template: "a8502920-d146-4545-83d0-ce9fb24046db"
+Path: /sitecore/content/CAR/Data Sources/Education
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20170517T205313Z

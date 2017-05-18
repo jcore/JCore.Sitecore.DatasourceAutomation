@@ -1,0 +1,74 @@
+﻿---
+ID: "a0a2fcc7-7ae8-4d54-8031-14b8d27d3e15"
+Parent: "f2a7a235-b44e-4db9-830a-71b7d169e3c4"
+Template: "a667c5da-a28d-4282-89e7-b563d4ff7dc9"
+Path: /sitecore/content/CAR/Home
+DB: master
+SharedFields:
+- ID: "0dca829c-9fce-41f5-9990-c6182fefe905"
+  Hint: SeoFollowLinks
+  Type: Checkbox
+  Value: 0
+- ID: "43533608-7316-4255-9217-09f755c51dc6"
+  Hint: Datasource Folder
+  Value: "{6AB4AEB6-3263-4F52-B6CA-098A8B624F18}"
+- ID: "683d7237-206a-488f-9dee-4a4e41fb161d"
+  Hint: CanIndex
+  Type: Checkbox
+  Value: 1
+- ID: "f1a1fe9e-a60c-4ddb-a3a0-bb5b29fe732e"
+  Hint: __Renderings
+  Type: layout
+  Value: |
+    <r xmlns:p="p" xmlns:s="s"
+      p:p="1">
+      <d
+        id="{FE5D7FDF-89C0-4D99-9AA3-B5FBD009C9F3}">
+        <r
+          uid="{8BB9D970-5CF6-47E3-A68F-EF10FFF8B6B0}"
+          s:ds=""
+          s:par="">
+          <p:da
+            name="ph" />
+        </r>
+      </d>
+    </r>
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "04bf00db-f5fb-41f7-8ab7-22408372a981"
+      Hint: __Final Renderings
+      Type: Layout
+      Value: |
+        <r xmlns:p="p" xmlns:s="s"
+          p:p="1">
+          <d
+            id="{FE5D7FDF-89C0-4D99-9AA3-B5FBD009C9F3}">
+            <r
+              uid="{8BB9D970-5CF6-47E3-A68F-EF10FFF8B6B0}">
+              <p:d />
+            </r>
+            <r
+              uid="{874FEC15-E680-4D50-9702-11F990DFBDA6}"
+              p:after="r[@uid='{FE3E37C8-AE37-4B36-B048-630ECEFE0D69}']"
+              s:ds=""
+              s:id="{A47C8288-7D4C-45FF-B75F-4AEDBF58A02D}"
+              s:par=""
+              s:ph="header" />
+          </d>
+        </r>
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20170509T023942Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\tonyw
+    - ID: "bb7a38c0-323c-4f81-8eb9-288abf7c4638"
+      Hint: MetaDescription
+      Value: A real estate trade association to develop and promote programs/services that enhance a member's ability to conduct business with integrity and competency. Find zipForm&reg;, legal articles and advice, CE training, marketing materials, and more.
+    - ID: "ca0479ce-0bfe-4522-83de-ba688b380a78"
+      Hint: BrowserTitle
+      Value: "CALIFORNIA ASSOCIATION OF REALTORS® - www.car.org"

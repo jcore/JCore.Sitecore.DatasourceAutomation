@@ -1,0 +1,14 @@
+﻿---
+ID: "21b5e4a0-a04d-45bb-96d9-fa339794393c"
+Parent: "48887d08-9797-45fa-9d1e-986292f755f7"
+Template: "ac919cc0-6c40-456d-ba6e-23b64231118f"
+Path: /sitecore/content/CAR/Data Sources/Business Tools/Content
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20170516T212258Z

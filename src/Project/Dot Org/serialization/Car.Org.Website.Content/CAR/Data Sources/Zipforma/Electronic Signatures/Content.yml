@@ -1,0 +1,18 @@
+﻿---
+ID: "b4b8883a-5d7c-4fca-84b0-922ebc8b9f81"
+Parent: "5593c793-6162-4c12-a412-c247407f2e87"
+Template: "ac919cc0-6c40-456d-ba6e-23b64231118f"
+Path: /sitecore/content/CAR/Data Sources/Zipforma/Electronic Signatures/Content
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20170517T205147Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        default\Anonymous

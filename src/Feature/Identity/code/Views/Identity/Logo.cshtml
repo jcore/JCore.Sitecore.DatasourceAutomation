@@ -1,0 +1,19 @@
+﻿@using Car.Feature.Identity
+@using Car.Feature.Identity.Repositories
+@using Car.Foundation.SitecoreExtensions.Extensions
+@model Sitecore.Mvc.Presentation.RenderingModel
+
+
+@{
+        var identity = IdentityRepository.Get(Model.Item);
+        if (identity == null)
+        {
+            return;
+        }
+    }
+    <div class="siteLogo floatLeft" tabindex="1">
+        <a class="block" href="/">
+            @Html.Sitecore().ImageField(Templates.Identity.Fields.Logo, identity, mh: 50)
+        </a>
+    </div>
+

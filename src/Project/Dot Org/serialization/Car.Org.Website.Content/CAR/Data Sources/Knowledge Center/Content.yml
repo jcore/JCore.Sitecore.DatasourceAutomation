@@ -1,0 +1,14 @@
+﻿---
+ID: "3c82bab0-0304-43ab-b00e-2bf5c659c2b3"
+Parent: "fb8dd244-4e06-4829-b08f-d3b0fb2281f2"
+Template: "ac919cc0-6c40-456d-ba6e-23b64231118f"
+Path: /sitecore/content/CAR/Data Sources/Knowledge Center/Content
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20170517T205321Z

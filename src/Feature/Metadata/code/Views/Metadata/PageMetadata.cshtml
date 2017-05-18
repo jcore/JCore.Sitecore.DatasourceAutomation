@@ -1,0 +1,26 @@
+﻿@using Car.Feature.Metadata
+@using Car.Feature.Metadata.Repositories
+@using Car.Foundation.Alerts
+@using Car.Foundation.Alerts.Extensions
+@using Car.Foundation.SitecoreExtensions.Extensions
+
+@model Sitecore.Mvc.Presentation.RenderingModel
+@if (!Model?.Item?.IsDerived(Templates.PageMetadata.ID) ?? true)
+{
+    @Html.PageEditorError(AlertTexts.InvalidDataSourceTemplate(Templates.PageMetadata.ID), AlertTexts.InvalidDataSourceTemplateFriendlyMessage, Model.Item?.ID, Model.Rendering.Item?.ID)
+    return;
+}
+@{
+    var siteMetadata = Model != null 
+        ? MetadataRepository.Get(Model.Item) 
+        : null;
+    if (siteMetadata == null)
+    {
+        return;
+    }
+}
+<title>@Html.Sitecore().Field(Templates.PageMetadata.Fields.BrowserTitle, Model.Item) @Html.Sitecore().Field(Templates.SiteMetadata.Fields.SiteBrowserTitle, siteMetadata)</title>
+<meta name="keywords" content="@MetadataRepository.GetKeywords(Model.Item)" />
+<meta name="description" content="@Html.Sitecore().Field(Templates.PageMetadata.Fields.Description, Model.Item)" />
+<meta name="robots" content="@MetadataRepository.GetRobots(Model.Item)" />
+@Html.Sitecore().Field(Templates.PageMetadata.Fields.CustomMetaData, Model.Item)

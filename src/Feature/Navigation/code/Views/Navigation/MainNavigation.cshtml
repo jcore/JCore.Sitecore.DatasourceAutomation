@@ -1,0 +1,31 @@
+﻿@using Car.Feature.Navigation
+@using Car.Foundation.SitecoreExtensions.Extensions
+@model Car.Feature.Navigation.Models.NavigationItems
+
+
+@{
+    if (Model?.Items == null)
+    {
+        return;
+    }
+    var i = 2;
+}
+
+
+<nav class="mainNav floatLeft">
+    <div class="innerContainer">
+        @foreach (var item in Model.Items)
+        {
+            <div class="navItem floatLeft @Html.Sitecore().Field(Templates.SectionLink.Fields.ClassAttribute, item.Item)">
+                <a href="#" data-subnav="@Html.Sitecore().Field(Templates.SectionLink.Fields.ClassAttribute, item.Item)" tabindex="@i">
+                    @{ i++; }
+                    @Html.Sitecore().Field(Templates.Navigable.Fields.NavigationTitle, item.Item)
+                </a>
+            </div>
+        }
+        <div class="clearAll"></div>
+        <div class="navCarrotSlider mainNav transitionAll hide">
+            <div class="mainNavCarrot navCarrot"></div>
+        </div>
+    </div>
+</nav>

@@ -1,0 +1,43 @@
+﻿---
+ID: "21e255fc-3001-4c6e-b67f-2e053b7d79f0"
+Parent: "fa936bd6-a60e-4748-bed8-e53cd8168ca8"
+Template: "010357ed-ae62-4c2f-a1f0-2d4f1819be4c"
+Path: /sitecore/content/CAR/Global/Links/Header Menu/Learn Thrive
+DB: master
+SharedFields:
+- ID: "ba3f86a2-4a1c-4d78-b63d-91c2779c1b5e"
+  Hint: __Sortorder
+  Value: 200
+Languages:
+- Language: en
+  Fields:
+  - ID: "b5e02ad9-d56f-4c41-a065-a133db87bdeb"
+    Hint: __Display name
+    Value: Learn & Thrive
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "1f5b8fc6-7441-478a-9426-a247d0d06971"
+      Hint: NavigationTitle
+      Value: Learn & Thrive
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20170516T195645Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\Admin
+    - ID: "8230ee45-6da2-4538-ae12-8d02502c77e2"
+      Hint: Section
+      Type: Treelist
+      Value: |
+        {78A5B9B8-1A70-411B-92D1-FB21852F7FE5}
+        {78B1FAFA-36E9-4409-BE67-319D150D8A4C}
+        {C0A46CF9-8386-4BB4-8E9A-BDFAAC26F51B}
+        {5D9B8F60-D3D5-47F7-B051-419BA9E693E9}
+    - ID: "9e03e1ef-7eb8-41b2-b8bd-8bef8966a7b8"
+      Hint: Data Attribute
+      Value: 
+    - ID: "b6528a32-8165-4fb0-ba60-64811b0400e5"
+      Hint: Attribute
+      Value: learnSN

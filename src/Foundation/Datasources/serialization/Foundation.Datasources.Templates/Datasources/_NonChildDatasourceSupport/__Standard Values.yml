@@ -1,0 +1,25 @@
+﻿---
+ID: "3653eb4c-9105-44d4-8a1e-f3915bb5b98f"
+Parent: "070cf52c-196f-449a-8fb4-d359695ff0ae"
+Template: "070cf52c-196f-449a-8fb4-d359695ff0ae"
+Path: /sitecore/templates/Foundation/Datasources/_NonChildDatasourceSupport/__Standard Values
+DB: master
+SharedFields:
+- ID: "0c894aab-962b-4a84-b923-cb24b05e60d2"
+  Hint: __Ribbon
+  Value: "{6DCA3F0E-F831-4ABA-A2E3-634DAB4C9219}"
+- ID: "43533608-7316-4255-9217-09f755c51dc6"
+  Hint: Datasource Folder
+  Value: 
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20170517T124557Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\Admin

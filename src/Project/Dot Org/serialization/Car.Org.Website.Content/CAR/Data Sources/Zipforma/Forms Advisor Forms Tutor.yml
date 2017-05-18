@@ -1,0 +1,18 @@
+﻿---
+ID: "444191e0-6a84-4251-94e0-c15e22447e1e"
+Parent: "8e630abf-df85-4a50-955b-3d89c9a75248"
+Template: "a8502920-d146-4545-83d0-ce9fb24046db"
+Path: /sitecore/content/CAR/Data Sources/Zipforma/Forms Advisor Forms Tutor
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20170517T205150Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        default\Anonymous

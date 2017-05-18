@@ -1,0 +1,14 @@
+﻿---
+ID: "69f25e24-f91e-4f17-9497-d69c84745540"
+Parent: "5d4c4ab0-c297-497a-be55-6825c64e0c22"
+Template: "ac919cc0-6c40-456d-ba6e-23b64231118f"
+Path: /sitecore/content/CAR/Data Sources/Meetings and events/Content
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20170517T205316Z

@@ -1,0 +1,47 @@
+﻿@using Car.Foundation.Assets.Models
+@using Car.Foundation.Assets.Services
+@using Sitecore.Mvc.Analytics.Extensions
+
+@inherits WebViewPage
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<!--[if IE 9]><html lang="en" class="ie9 no-js"><![endif]-->
+<!--[if !IE]><!-->
+<html lang="@Sitecore.Context.Language.CultureInfo.TwoLetterISOLanguageName">
+    <!--<![endif]-->
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="referrer" content="always">
+        @if (!Sitecore.Context.PageMode.IsExperienceEditor)
+        {
+            @Html.Sitecore().Placeholder("head")
+        }
+        <!-- Latest compiled and minified JavaScript -->
+        @RenderAssetsService.Current.RenderScript(ScriptLocation.Head)
+        @RenderAssetsService.Current.RenderStyles()
+        @Html.Sitecore().VisitorIdentification()
+    </head>
+    <body class="@(Sitecore.Context.PageMode.IsNormal ? "" : (Sitecore.Context.PageMode.IsExperienceEditor ? "pagemode-edit" : "pagemode-preview"))">
+        <div class="siteWrapper">
+            @Html.Sitecore().Placeholder("wrapped-sidebar")
+            @Html.Sitecore().Placeholder("header")
+
+            <div class="pageWrapper">
+                @Html.Sitecore().Placeholder("page-layout")
+            </div>
+            <!-- main site footer -->
+            <footer class="mainFooter">
+                @Html.Sitecore().Placeholder("footer")
+            </footer>
+            <!-- end main site footer -->
+            <div class="pageWrapperOverlay"></div>
+        </div>
+        @Html.Sitecore().Placeholder("unwrapped-sidebar")
+        @RenderAssetsService.Current.RenderScript(ScriptLocation.Body)
+    </body>
+</html>

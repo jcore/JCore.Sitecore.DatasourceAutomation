@@ -1,0 +1,55 @@
+﻿---
+ID: "b5868d43-8d4d-4af6-83cb-e70a583f0b28"
+Parent: "a667c5da-a28d-4282-89e7-b563d4ff7dc9"
+Template: "a667c5da-a28d-4282-89e7-b563d4ff7dc9"
+Path: /sitecore/templates/Project/CAR/Page Types/Home/__Standard Values
+DB: master
+SharedFields:
+- ID: "1172f251-dad4-4efb-a329-0c63500e4f1e"
+  Hint: __Masters
+  Type: TreelistEx
+  Value: |
+    {8EE208F9-A6A6-41E2-88A0-C188737A178C}
+    {94A8C8E9-690B-4E65-98E7-F95800222767}
+- ID: "f1a1fe9e-a60c-4ddb-a3a0-bb5b29fe732e"
+  Hint: __Renderings
+  Type: layout
+  Value: |
+    <r xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <d
+        id="{FE5D7FDF-89C0-4D99-9AA3-B5FBD009C9F3}"
+        l="{E99FBF20-515B-475B-9F79-7ECE0DB1C022}">
+        <r
+          id="{E7AE3F87-CF66-40F2-A9F5-33ECF08BC777}"
+          ph="head"
+          uid="{FE3E37C8-AE37-4B36-B048-630ECEFE0D69}" />
+        <r
+          id="{A47C8288-7D4C-45FF-B75F-4AEDBF58A02D}"
+          ph="header"
+          uid="{8BB9D970-5CF6-47E3-A68F-EF10FFF8B6B0}" />
+        <r
+          ds="{FA936BD6-A60E-4748-BED8-E53CD8168CA8}"
+          id="{EF8A228D-EFD8-4467-BBC2-508BBAC1FBC7}"
+          par=""
+          ph="header"
+          uid="{EB25543E-EAB8-4455-B070-F3C0195F09C9}" />
+        <r
+          ds="{FA936BD6-A60E-4748-BED8-E53CD8168CA8}"
+          id="{5809853B-AD18-46F5-B707-DA7D656EC5E7}"
+          par=""
+          ph="header"
+          uid="{E4063601-FD5A-4FB5-BAC5-A402EAC897FB}" />
+      </d>
+    </r>
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20170509T034445Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\tonyw

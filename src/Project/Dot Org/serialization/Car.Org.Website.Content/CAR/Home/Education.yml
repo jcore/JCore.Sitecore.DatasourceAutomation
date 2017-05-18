@@ -1,0 +1,30 @@
+﻿---
+ID: "78a5b9b8-1a70-411b-92d1-fb21852f7fe5"
+Parent: "a0a2fcc7-7ae8-4d54-8031-14b8d27d3e15"
+Template: "8ee208f9-a6a6-41e2-88a0-c188737a178c"
+Path: /sitecore/content/CAR/Home/Education
+DB: master
+SharedFields:
+- ID: "43533608-7316-4255-9217-09f755c51dc6"
+  Hint: Datasource Folder
+  Value: "{6EF40D51-2293-410B-8B79-85073254F630}"
+- ID: "ba3f86a2-4a1c-4d78-b63d-91c2779c1b5e"
+  Hint: __Sortorder
+  Value: 225
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "1f5b8fc6-7441-478a-9426-a247d0d06971"
+      Hint: NavigationTitle
+      Value: Education
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20170516T162144Z
+    - ID: "c30a013f-3cc8-4961-9837-1c483277084a"
+      Hint: Title
+      Value: Education
+    - ID: "ca0479ce-0bfe-4522-83de-ba688b380a78"
+      Hint: BrowserTitle
+      Value: Education

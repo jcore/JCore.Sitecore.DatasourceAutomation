@@ -1,0 +1,42 @@
+﻿---
+ID: "67452ffc-02c9-49fb-9419-3fe53f1f6b04"
+Parent: "746b52f2-b31e-40e3-b9a2-b6f1e2b5093b"
+Template: "746b52f2-b31e-40e3-b9a2-b6f1e2b5093b"
+Path: /sitecore/templates/Project/CAR/Page Types/Article/__Standard Values
+DB: master
+SharedFields:
+- ID: "f1a1fe9e-a60c-4ddb-a3a0-bb5b29fe732e"
+  Hint: __Renderings
+  Type: layout
+  Value: |
+    <r xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <d
+        id="{FE5D7FDF-89C0-4D99-9AA3-B5FBD009C9F3}"
+        l="{E99FBF20-515B-475B-9F79-7ECE0DB1C022}">
+        <r
+          id="{E7AE3F87-CF66-40F2-A9F5-33ECF08BC777}"
+          ph="head"
+          uid="{FE3E37C8-AE37-4B36-B048-630ECEFE0D69}" />
+        <r
+          id="{A47C8288-7D4C-45FF-B75F-4AEDBF58A02D}"
+          ph="header"
+          uid="{8BB9D970-5CF6-47E3-A68F-EF10FFF8B6B0}" />
+        <r
+          ds="{FA936BD6-A60E-4748-BED8-E53CD8168CA8}"
+          id="{EF8A228D-EFD8-4467-BBC2-508BBAC1FBC7}"
+          par=""
+          ph="header"
+          uid="{EB25543E-EAB8-4455-B070-F3C0195F09C9}" />
+        <r
+          id="{79EB8D75-A139-4AFD-BFD5-810914F77CB9}"
+          ph="header-mainSubNav"
+          uid="{A2B37F3B-9552-493F-92E0-B84F944274EA}" />
+      </d>
+    </r>
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Value: "20170517T173351:636306392311927860Z"

@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 
-[assembly: AssemblyTitle("Car.Common.Website")]
+[assembly: AssemblyTitle("JCore.Common.Website")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("XCentium/California Association of Realtors")]
-[assembly: AssemblyProduct("Car.Common.Website")]
+[assembly: AssemblyProduct("JCore.Common.Website")]
 [assembly: AssemblyCopyright("Copyright © CAR 2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

@@ -1,12 +1,12 @@
 ﻿using JCore.Foundation.Testing.Attributes;
 using Sitecore.FakeDb;
 using Sitecore.Data;
-using JCore.Foundation.Datasources.Models;
 using Sitecore;
 using FluentAssertions;
 using Xunit;
 using Sitecore.Data.Items;
 using System.Linq;
+using static JCore.Foundation.Datasources.Templates;
 
 namespace JCore.Foundation.Datasources.Repositories.Tests
 {
@@ -27,7 +27,7 @@ namespace JCore.Foundation.Datasources.Repositories.Tests
                 homeItem.Should().NotBeNull();
 
                 repository.CreateItemDatasource(homeItem);
-                var datasource = homeItem[NonChildDatasourceSupport.DatasourceFolderFieldName];
+                var datasource = homeItem[NonChildDatasourceSupport.Fields.DatasourceFolderFieldName];
                 datasource.Should().NotBeNullOrWhiteSpace();
 
                 var datasourceContentItem = Context.Site.Database.GetItem(datasource);
@@ -40,7 +40,7 @@ namespace JCore.Foundation.Datasources.Repositories.Tests
                 landingItem.Should().NotBeNull();
 
                 repository.CreateItemDatasource(landingItem);
-                var landingDatasource = landingItem[NonChildDatasourceSupport.DatasourceFolderFieldName];
+                var landingDatasource = landingItem[NonChildDatasourceSupport.Fields.DatasourceFolderFieldName];
                 landingDatasource.Should().NotBeNullOrWhiteSpace();
 
                 var landingDatasourceContentItem = Context.Site.Database.GetItem(landingDatasource);
@@ -65,7 +65,7 @@ namespace JCore.Foundation.Datasources.Repositories.Tests
                 homeItem.Should().NotBeNull();
 
                 repository.CreateItemDatasource(homeItem);
-                var datasource = homeItem[NonChildDatasourceSupport.DatasourceFolderFieldName];
+                var datasource = homeItem[NonChildDatasourceSupport.Fields.DatasourceFolderFieldName];
                 datasource.Should().NotBeNullOrWhiteSpace();
 
                 var datasourceContentItem = Context.Site.Database.GetItem(datasource);
@@ -76,7 +76,7 @@ namespace JCore.Foundation.Datasources.Repositories.Tests
                 landingItem.Should().NotBeNull();
 
                 repository.CreateItemDatasource(landingItem);
-                var landingDatasource = landingItem[NonChildDatasourceSupport.DatasourceFolderFieldName];
+                var landingDatasource = landingItem[NonChildDatasourceSupport.Fields.DatasourceFolderFieldName];
                 landingDatasource.Should().NotBeNullOrWhiteSpace();
 
                 repository.DeleteItemDatasource(landingItem);
@@ -105,7 +105,7 @@ namespace JCore.Foundation.Datasources.Repositories.Tests
                 homeItem.Should().NotBeNull();
 
                 repository.CreateItemDatasource(homeItem);
-                var datasource = homeItem[NonChildDatasourceSupport.DatasourceFolderFieldName];
+                var datasource = homeItem[NonChildDatasourceSupport.Fields.DatasourceFolderFieldName];
                 datasource.Should().NotBeNullOrWhiteSpace();
 
                 // process landing page
@@ -113,7 +113,7 @@ namespace JCore.Foundation.Datasources.Repositories.Tests
                 landingItem.Should().NotBeNull();
 
                 repository.CreateItemDatasource(landingItem);
-                var landingDatasource = landingItem[NonChildDatasourceSupport.DatasourceFolderFieldName];
+                var landingDatasource = landingItem[NonChildDatasourceSupport.Fields.DatasourceFolderFieldName];
                 landingDatasource.Should().NotBeNullOrWhiteSpace();
 
                 var datasourceContentItem = Context.Site.Database.GetItem(landingDatasource);
@@ -146,7 +146,7 @@ namespace JCore.Foundation.Datasources.Repositories.Tests
                 homeItem.Should().NotBeNull();
 
                 repository.CreateItemDatasource(homeItem);
-                var datasource = homeItem[NonChildDatasourceSupport.DatasourceFolderFieldName];
+                var datasource = homeItem[NonChildDatasourceSupport.Fields.DatasourceFolderFieldName];
                 datasource.Should().NotBeNullOrWhiteSpace();
 
                 var datasourceContentItem = Context.Site.Database.GetItem(datasource);
@@ -157,7 +157,7 @@ namespace JCore.Foundation.Datasources.Repositories.Tests
                 landingItem.Should().NotBeNull();
 
                 repository.CreateItemDatasource(landingItem);
-                var landingDatasource = landingItem[NonChildDatasourceSupport.DatasourceFolderFieldName];
+                var landingDatasource = landingItem[NonChildDatasourceSupport.Fields.DatasourceFolderFieldName];
                 landingDatasource.Should().NotBeNullOrWhiteSpace();
 
                 var landingDatasourceContentItem = Context.Site.Database.GetItem(landingDatasource);
@@ -167,7 +167,7 @@ namespace JCore.Foundation.Datasources.Repositories.Tests
                 var articleItem = landingItem.Children.FirstOrDefault(i => i.Name == "Article");
 
                 repository.CreateItemDatasource(articleItem);
-                var articleDatasource = articleItem[NonChildDatasourceSupport.DatasourceFolderFieldName];
+                var articleDatasource = articleItem[NonChildDatasourceSupport.Fields.DatasourceFolderFieldName];
                 articleDatasource.Should().NotBeNullOrWhiteSpace();
 
                 var articleDatasourceContentItem = Context.Site.Database.GetItem(articleDatasource);
@@ -198,21 +198,21 @@ namespace JCore.Foundation.Datasources.Repositories.Tests
                     { "datasourceRootItem", datasourceId.ToString() }
                            });
 
-            var nonChildDatasourceTemplate = new DbTemplate("NonChildDatasourceSupport", NonChildDatasourceSupport.SitecoreTemplateId) { NonChildDatasourceSupport.DatasourceFolderFieldName };
+            var nonChildDatasourceTemplate = new DbTemplate("NonChildDatasourceSupport", NonChildDatasourceSupport.ID) { NonChildDatasourceSupport.Fields.DatasourceFolderFieldName };
             db.Add(nonChildDatasourceTemplate);
 
-            var datasourceFolderTemplate = new DbTemplate("DatasourceFolder", DatasourceFolder.SitecoreTemplateId);
+            var datasourceFolderTemplate = new DbTemplate("DatasourceFolder", DatasourceFolderBranch.ID);
             db.Add(datasourceFolderTemplate);
 
-            var datasourceSubfolderTemplate = new DbTemplate("DatasourceSubfolder", DatasourceSubfolder.SitecoreTemplateId);
+            var datasourceSubfolderTemplate = new DbTemplate("DatasourceSubfolder", DatasourceSubfolderTemplate.ID);
             db.Add(datasourceSubfolderTemplate);
 
-            var landingPage = new DbItem("Test", ID.NewID, NonChildDatasourceSupport.SitecoreTemplateId) {
-                new DbItem("Home", ID.NewID, NonChildDatasourceSupport.SitecoreTemplateId)
+            var landingPage = new DbItem("Test", ID.NewID, NonChildDatasourceSupport.ID) {
+                new DbItem("Home", ID.NewID, NonChildDatasourceSupport.ID)
                 {
-                    new DbItem("Landing", ID.NewID, NonChildDatasourceSupport.SitecoreTemplateId)
+                    new DbItem("Landing", ID.NewID, NonChildDatasourceSupport.ID)
                     {
-                        new DbItem("Article", ID.NewID, NonChildDatasourceSupport.SitecoreTemplateId)
+                        new DbItem("Article", ID.NewID, NonChildDatasourceSupport.ID)
                     }
                 },
                 new DbItem("Datasources", datasourceId)

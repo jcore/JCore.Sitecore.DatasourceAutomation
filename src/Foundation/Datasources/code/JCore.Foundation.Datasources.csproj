@@ -108,16 +108,14 @@
     <Compile Include="Commands\ProgressedCommand.cs" />
     <Compile Include="ConfigSettings.cs" />
     <Compile Include="Constants.cs" />
+    <Compile Include="DatabaseExtensions.cs" />
     <Compile Include="Events\ItemEventHandler.cs" />
-    <Compile Include="Models\DatasourceFolder.cs" />
-    <Compile Include="Models\DatasourceSubfolder.cs" />
-    <Compile Include="Models\INonChildDatasourceSupport.cs" />
-    <Compile Include="Models\NonChildDatasourceSupport.cs" />
     <Compile Include="Pipelines\GetRenderingDatasource\GetDatasourceLocation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\DatasourceRepository.cs" />
     <Compile Include="Repositories\IDatasourceRepository.cs" />
     <Compile Include="SitecoreHelper.cs" />
+    <Compile Include="Templates.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Config\Include\Foundation\Foundation.Datasources.config" />

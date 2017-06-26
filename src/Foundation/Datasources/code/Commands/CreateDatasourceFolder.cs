@@ -1,13 +1,9 @@
-﻿using JCore.Foundation.Datasources.Models;
-using JCore.Foundation.Datasources.Repositories;
+﻿using JCore.Foundation.Datasources.Repositories;
 using Sitecore.Data.Items;
 using Sitecore.Diagnostics;
 using Sitecore.Shell.Framework.Commands;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using static JCore.Foundation.Datasources.Templates;
 
 namespace JCore.Foundation.Datasources.Commands
 {
@@ -34,7 +30,7 @@ namespace JCore.Foundation.Datasources.Commands
             Assert.ArgumentNotNull(context, "context");
             if (context.Items.Length != 1)
                 return CommandState.Disabled;
-            if (!string.IsNullOrWhiteSpace(context.Items[0][NonChildDatasourceSupport.DatasourceFolderFieldId]))
+            if (!string.IsNullOrWhiteSpace(context.Items[0][NonChildDatasourceSupport.Fields.DatasourceFolderFieldId]))
                 return CommandState.Disabled;
             return base.QueryState(context);
         }

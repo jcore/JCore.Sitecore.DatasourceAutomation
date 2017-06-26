@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Sitecore.Data.Items;
 using Sitecore.SecurityModel;
 using Sitecore.Data.Managers;
@@ -10,16 +7,21 @@ using Sitecore.Data;
 using Sitecore;
 using Sitecore.Data.Fields;
 using Sitecore.Layouts;
-using JCore.Foundation.Datasources.Models;
 using JCore.Foundation.SitecoreExtensions.Extensions;
+using static JCore.Foundation.Datasources.Templates;
+using JCore.Foundation.Datasources;
 
 namespace JCore.Foundation.Datasources.Repositories
 {
     public class DatasourceRepository : IDatasourceRepository
     {
+        /// <summary>
+        /// Creates the item datasource.
+        /// </summary>
+        /// <param name="item">The item.</param>
         public void CreateItemDatasource(Item item)
         {
-            if (!item.IsDerived(NonChildDatasourceSupport.SitecoreTemplateId) || !string.IsNullOrWhiteSpace(item[NonChildDatasourceSupport.DatasourceFolderFieldId]))
+            if (!item.IsDerived(NonChildDatasourceSupport.ID) || !string.IsNullOrWhiteSpace(item[NonChildDatasourceSupport.Fields.DatasourceFolderFieldId]))
             {
                 return;
             }
@@ -39,24 +41,24 @@ namespace JCore.Foundation.Datasources.Repositories
                 if (homeItem != null && item.Parent.ID == homeItem.ID)
                 {
                     requireDatasourcePath = string.Format("{0}/{1}", datasourceItem.Paths.Path, item.Name);
-                    pageDatasourceItem = CreateDataSourceItem(item.Database, requireDatasourcePath, ConfigSettings.ParentDatasourceFolderTemplateId, true);
+                    pageDatasourceItem = CreateDataSourceItem(item.Database, requireDatasourcePath, DatasourceFolderBranch.ID, datasourceItem, true);
                     if (pageDatasourceItem == null)
                     {
                         return;
                     }
-                    requireDatasourcePath = string.Format("{0}/{1}/Content", datasourceItem.Paths.Path, pageDatasourceItem.Name);
-                    pageDatasourceItem = CreateDataSourceItem(item.Database, requireDatasourcePath, ConfigSettings.ChildDatasourceFolderTemplateId, true);
+                    //requireDatasourcePath = string.Format("{0}/{1}", datasourceItem.Paths.Path, pageDatasourceItem.Name);
+                    //pageDatasourceItem = CreateDataSourceItem(item.Database, requireDatasourcePath, DatasourceSubfolderTemplate.ID, datasourceItem, true);
                 }
                 else if (homeItem != null)
                 {
                     requireDatasourcePath = string.Concat(datasourceItem.Paths.Path, item.Paths.FullPath.Replace(homeItem.Paths.FullPath, ""));
-                    pageDatasourceItem = CreateDataSourceItem(item.Database, requireDatasourcePath, ConfigSettings.ParentDatasourceFolderTemplateId, true);
+                    pageDatasourceItem = CreateDataSourceItem(item.Database, requireDatasourcePath, DatasourceFolderBranch.ID, datasourceItem, true);
                     if (pageDatasourceItem == null)
                     {
                         return;
                     }
-                    requireDatasourcePath = string.Format("{0}/Content", pageDatasourceItem.Paths.FullPath);
-                    pageDatasourceItem = CreateDataSourceItem(item.Database, requireDatasourcePath, ConfigSettings.ChildDatasourceFolderTemplateId, true);
+                    requireDatasourcePath = string.Format("{0}", pageDatasourceItem.Paths.FullPath);
+                    pageDatasourceItem = CreateDataSourceItem(item.Database, requireDatasourcePath, DatasourceSubfolderTemplate.ID, datasourceItem, true);
                 }
 
                 PopulateDatasourceFolderField(pageDatasourceItem, item);
@@ -68,13 +70,17 @@ namespace JCore.Foundation.Datasources.Repositories
             }
         }
 
+        /// <summary>
+        /// Deletes the item datasource.
+        /// </summary>
+        /// <param name="item">The item.</param>
         public void DeleteItemDatasource(Item item)
         {
-            if (string.IsNullOrWhiteSpace(item[NonChildDatasourceSupport.DatasourceFolderFieldName]))
+            if (string.IsNullOrWhiteSpace(item[NonChildDatasourceSupport.Fields.DatasourceFolderFieldName]))
             {
                 return;
             }
-            var datasourceField = (ReferenceField)item.Fields[NonChildDatasourceSupport.DatasourceFolderFieldName];
+            var datasourceField = (ReferenceField)item.Fields[NonChildDatasourceSupport.Fields.DatasourceFolderFieldName];
             if(datasourceField != null && datasourceField.TargetItem != null)
             {
                 using (new SecurityDisabler())
@@ -89,11 +95,11 @@ namespace JCore.Foundation.Datasources.Repositories
 
                     if (!datasourceField.TargetItem.HasChildren)
                     {
-                        if (datasourceField.TargetItem.TemplateID == DatasourceSubfolder.SitecoreTemplateId && datasourceField.TargetItem.Parent.TemplateID == DatasourceFolder.SitecoreTemplateId)
+                        if (datasourceField.TargetItem.TemplateID == DatasourceSubfolderTemplate.ID && datasourceField.TargetItem.Parent.TemplateID == DatasourceFolderTemplate.ID)
                         {
                             RemoveDatasourceItem(datasourceField.TargetItem.Parent, item);
                         }
-                        else if (datasourceField.TargetItem.TemplateID == DatasourceSubfolder.SitecoreTemplateId)
+                        else if (datasourceField.TargetItem.TemplateID == DatasourceSubfolderTemplate.ID)
                         {
                             RemoveDatasourceItem(datasourceField.TargetItem, item);
                         }
@@ -102,18 +108,22 @@ namespace JCore.Foundation.Datasources.Repositories
             }
         }
 
+        /// <summary>
+        /// Moves the item datasource.
+        /// </summary>
+        /// <param name="item">The item.</param>
         public void MoveItemDatasource(Item item)
         {
-            if (string.IsNullOrWhiteSpace(item[NonChildDatasourceSupport.DatasourceFolderFieldName]))
+            if (string.IsNullOrWhiteSpace(item[NonChildDatasourceSupport.Fields.DatasourceFolderFieldName]))
             {
                 return;
             }
-            var datasourceField = (ReferenceField)item.Fields[NonChildDatasourceSupport.DatasourceFolderFieldName];
+            var datasourceField = (ReferenceField)item.Fields[NonChildDatasourceSupport.Fields.DatasourceFolderFieldName];
             if (datasourceField != null && datasourceField.TargetItem != null)
             {
                 using (new SecurityDisabler())
                 {
-                    if (datasourceField.TargetItem.TemplateID == DatasourceSubfolder.SitecoreTemplateId && datasourceField.TargetItem.Parent.TemplateID == DatasourceFolder.SitecoreTemplateId)
+                    if (datasourceField.TargetItem.TemplateID == DatasourceSubfolderTemplate.ID && datasourceField.TargetItem.Parent.TemplateID == DatasourceFolderTemplate.ID)
                     {
                         var datasourceItemId = ConfigSettings.DatasourcesRootId(item);
                         if (!string.IsNullOrWhiteSpace(datasourceItemId))
@@ -138,18 +148,22 @@ namespace JCore.Foundation.Datasources.Repositories
             }
         }
 
+        /// <summary>
+        /// Renames the item datasource.
+        /// </summary>
+        /// <param name="item">The item.</param>
         public void RenameItemDatasource(Item item)
         {
-            if (string.IsNullOrWhiteSpace(item[NonChildDatasourceSupport.DatasourceFolderFieldName]))
+            if (string.IsNullOrWhiteSpace(item[NonChildDatasourceSupport.Fields.DatasourceFolderFieldName]))
             {
                 return;
             }
-            var datasourceField = (ReferenceField)item.Fields[NonChildDatasourceSupport.DatasourceFolderFieldName];
+            var datasourceField = (ReferenceField)item.Fields[NonChildDatasourceSupport.Fields.DatasourceFolderFieldName];
             if (datasourceField != null && datasourceField.TargetItem != null)
             {
                 using (new SecurityDisabler())
                 {
-                    if (datasourceField.TargetItem.TemplateID == DatasourceSubfolder.SitecoreTemplateId && datasourceField.TargetItem.Parent.TemplateID == DatasourceFolder.SitecoreTemplateId)
+                    if (datasourceField.TargetItem.TemplateID == DatasourceSubfolderTemplate.ID && datasourceField.TargetItem.Parent.TemplateID == DatasourceFolderTemplate.ID)
                     {
                         var datasourceItem = datasourceField.TargetItem.Parent;
                         using (new EditContext(datasourceItem))
@@ -161,6 +175,11 @@ namespace JCore.Foundation.Datasources.Repositories
             }
         }
 
+        /// <summary>
+        /// Removes the datasource item.
+        /// </summary>
+        /// <param name="datasource">The datasource.</param>
+        /// <param name="item">The item.</param>
         private void RemoveDatasourceItem(Item datasource, Item item)
         {
             var references = Globals.LinkDatabase.GetItemReferrers(datasource, true);
@@ -188,7 +207,7 @@ namespace JCore.Foundation.Datasources.Repositories
             foreach (var rendering in renderings)
             {
                 if (rendering == null || rendering.RenderingItem == null) continue;
-                var renderingDatasourceTemplatePath = rendering.RenderingItem.InnerItem[Constants.DatasourceTemplateFieldName];
+                var renderingDatasourceTemplatePath = rendering.RenderingItem.InnerItem[Rendering.Fields.DatasourceTemplateFieldName];
                 if (string.IsNullOrWhiteSpace(renderingDatasourceTemplatePath)) continue;
                 using (new SecurityDisabler())
                 {
@@ -225,12 +244,12 @@ namespace JCore.Foundation.Datasources.Repositories
         /// <param name="item">The item.</param>
         private static void PopulateDatasourceFolderField(Item dataSourceItem, Item item)
         {
-            if (item.Fields[NonChildDatasourceSupport.DatasourceFolderFieldName] == null) return;
+            if (item.Fields[NonChildDatasourceSupport.Fields.DatasourceFolderFieldName] == null) return;
             using (new SecurityDisabler())
             {
                 using (new EditContext(item, SecurityCheck.Disable))
                 {
-                    item.Fields[NonChildDatasourceSupport.DatasourceFolderFieldName].Value = dataSourceItem.ID.ToString();
+                    item.Fields[NonChildDatasourceSupport.Fields.DatasourceFolderFieldName].Value = dataSourceItem.ID.ToString();
                 }
             }
         }
@@ -241,9 +260,9 @@ namespace JCore.Foundation.Datasources.Repositories
         /// <param name="templateId">The template identifier.</param>
         /// <param name="useExisting"></param>
         /// <returns></returns>
-        private Item CreateDataSourceItem(Database db, string targetItemPath, string templateId, bool useExisting)
+        private Item CreateDataSourceItem(Database db, string targetItemPath, ID templateId, Item datasourceRootItem, bool useExisting)
         {
-            if (string.IsNullOrWhiteSpace(targetItemPath) || string.IsNullOrWhiteSpace(templateId))
+            if (string.IsNullOrWhiteSpace(targetItemPath))
             {
                 return null;
             }
@@ -255,10 +274,23 @@ namespace JCore.Foundation.Datasources.Repositories
                 {
                     using (new SecurityDisabler())
                     {
-                        var templateItem = db.GetTemplate(ID.Parse(templateId));
+                        var item = db.GetItem(templateId);
+                        if (item == null) return null;
+
+                        CustomItemBase templateItem = null;
+
+                        if (item.TemplateID == BranchTemplate.ID)
+                        {
+                            templateItem = new BranchItem(item);
+                        }
+                        else if (item.TemplateID == TemplateTemplate.ID)
+                        {
+                            templateItem = new TemplateItem(item);
+                        }
+
                         if (templateItem == null) return null;
 
-                        var template = TemplateManager.GetTemplate(templateItem.InnerItem);
+                        var template = TemplateManager.GetTemplate(item);
                         if (template != null && template.GetBaseTemplates().Any(t => t.ID == ID.Parse(Constants.StandardRenderingParametersTemplate)))
                         {
                             return null;
@@ -269,24 +301,29 @@ namespace JCore.Foundation.Datasources.Repositories
                             var folderPath = StringUtil.RemovePostfix(datasourceFolderItem.Name, targetItemPath);
                             targetItemPath = string.Concat(folderPath, uniqueName);
                         }
-                        dataSourceItem = db.CreateItemPath(targetItemPath, templateItem);
-                        var parentFolderTemplateId = ID.Parse(ConfigSettings.ParentDatasourceFolderTemplateId);
-                        if (dataSourceItem != null && dataSourceItem.Parent.TemplateID != parentFolderTemplateId)
+                        dataSourceItem = db.CreateItemPath(targetItemPath, templateItem, templateItem);
+                        var parentFolderTemplateId = ID.Parse(DatasourceFolderBranch.ID);
+                        if (dataSourceItem != null && dataSourceItem.TemplateID != parentFolderTemplateId)
                         {
                             var datasourceFolderTemplate = db.GetTemplate(parentFolderTemplateId);
                             if (datasourceFolderTemplate != null)
                             {
-                                using (new EditContext(dataSourceItem.Parent, false, true))
+                                foreach (var ancestor in dataSourceItem.Axes.GetAncestors().Where(a=>a.Paths.LongID.Contains(datasourceRootItem.Paths.LongID)))
                                 {
-                                    dataSourceItem.Parent.ChangeTemplate(datasourceFolderTemplate);
+                                    using (new EditContext(ancestor, false, true))
+                                    {
+                                        ancestor.ChangeTemplate(datasourceFolderTemplate);
+                                    }
                                 }
                             }
                         }
+
+                        dataSourceItem = dataSourceItem.Children.FirstOrDefault(i => i.TemplateID == ID.Parse(DatasourceSubfolderTemplate.ID) && i.Name == "Content");
                     }
                 }
                 else
                 {
-                    dataSourceItem = datasourceFolderItem;
+                    dataSourceItem = datasourceFolderItem.TemplateID == ID.Parse(DatasourceSubfolderTemplate.ID) ? datasourceFolderItem : datasourceFolderItem.Children.FirstOrDefault(i => i.TemplateID == ID.Parse(DatasourceSubfolderTemplate.ID) && i.Name == "Content"); ;
                 }
                 return dataSourceItem;
             }

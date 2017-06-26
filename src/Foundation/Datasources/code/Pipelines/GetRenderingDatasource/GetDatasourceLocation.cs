@@ -1,13 +1,10 @@
-﻿using JCore.Foundation.Datasources.Models;
-using Sitecore.Data;
+﻿using Sitecore.Data;
 using Sitecore.Data.Items;
 using Sitecore.Diagnostics;
 using Sitecore.Pipelines.GetRenderingDatasource;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using static JCore.Foundation.Datasources.Templates;
+using JCore.Foundation.SitecoreExtensions.Extensions;
 
 namespace JCore.Foundation.Datasources.Pipelines.GetRenderingDatasource
 {
@@ -24,14 +21,11 @@ namespace JCore.Foundation.Datasources.Pipelines.GetRenderingDatasource
 
             if (string.IsNullOrWhiteSpace(args.ContextItemPath) || args.ContentDatabase == null) return;
 
-            if (args.RenderingItem != null && string.IsNullOrEmpty(args.RenderingItem[Constants.DatasourceTemplateFieldName]))
-                return;
-
             var currentItem = args.ContentDatabase.GetItem(args.ContextItemPath);
             if (currentItem == null) return;
 
-            var datasourceReference = currentItem[NonChildDatasourceSupport.DatasourceFolderFieldId];
-            if (string.IsNullOrWhiteSpace(datasourceReference))
+            var datasourceReference = currentItem[NonChildDatasourceSupport.Fields.DatasourceFolderFieldId];
+            if (string.IsNullOrWhiteSpace(datasourceReference) && !currentItem.IsDerived(NonChildDatasourceSupport.ID))
             {
                 SetChildDataSourceItem(args, currentItem);
             }
@@ -48,8 +42,9 @@ namespace JCore.Foundation.Datasources.Pipelines.GetRenderingDatasource
         /// <param name="currentItem"></param>
         private static void SetChildDataSourceItem(GetRenderingDatasourceArgs args, Item currentItem)
         {
+
             var childDatasourceItem = currentItem.Children
-                .FirstOrDefault(child => child.TemplateID == DatasourceSubfolder.SitecoreTemplateId);
+                .FirstOrDefault(child => child.TemplateID == DatasourceSubfolderTemplate.ID);
             if (childDatasourceItem != null)
             {
                 args.DatasourceRoots.Insert(0, childDatasourceItem);
@@ -63,6 +58,15 @@ namespace JCore.Foundation.Datasources.Pipelines.GetRenderingDatasource
         /// <param name="datasourceReference"></param>
         private static void SetNonChildDataSourceItem(GetRenderingDatasourceArgs args, string datasourceReference)
         {
+            if (ConfigSettings.DefaultRenderingDatasourceLocation != ID.Null)
+            {
+                var defaultLocationItem = args.ContentDatabase.GetItem(ConfigSettings.DefaultRenderingDatasourceLocation);
+                if (defaultLocationItem != null)
+                {
+                    args.DatasourceRoots.Insert(0, defaultLocationItem);
+                }
+            }
+
             var datasourceReferenceItem = args.ContentDatabase.GetItem(datasourceReference);
             if (datasourceReferenceItem != null)
             {

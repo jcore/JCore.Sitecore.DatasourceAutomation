@@ -41,7 +41,7 @@ namespace JCore.Foundation.SitecoreExtensions.Extensions
             if (mediaItem == null)
                 throw new ArgumentNullException(nameof(mediaItem));
 
-            var options = new MediaUrlOptions {Height = height, Width = width};
+            var options = new MediaUrlOptions { Height = height, Width = width };
             var url = MediaManager.GetMediaUrl(mediaItem, options);
             var cleanUrl = StringUtil.EnsurePrefix('/', url);
             var hashedUrl = HashingUtils.ProtectAssetUrl(cleanUrl);
@@ -190,6 +190,20 @@ namespace JCore.Foundation.SitecoreExtensions.Extensions
             Assert.IsNotNull(item, "Item cannot be null");
             Assert.IsNotNull(fieldId, "FieldId cannot be null");
             return new HtmlString(FieldRendererService.RenderField(item, fieldId));
+        }
+
+        public static string UniqueName(this Item item)
+        {
+            var parent = item.Parent;
+
+            var text = item.Name;
+            var num = 1;
+            while (parent.Axes.GetChild(text) != null)
+            {
+                text = item.Name + " " + num;
+                num++;
+            }
+            return text;
         }
     }
 

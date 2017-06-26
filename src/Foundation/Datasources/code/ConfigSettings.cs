@@ -1,17 +1,15 @@
 ﻿using Sitecore.Data.Items;
 using Sitecore.Configuration;
+using Sitecore.Data;
+using JCore.Foundation.SitecoreExtensions.Extensions;
 
 namespace JCore.Foundation.Datasources
 {
     internal static class ConfigSettings
     {
-        internal static string ChildDatasourceFolderTemplateId
+        internal static ID DefaultRenderingDatasourceLocation
         {
-            get { return Settings.GetSetting("JCore.Foundation.Datasources.ChildDatasourceFolderTemplateId", "{AC919CC0-6C40-456D-BA6E-23B64231118F}"); }
-        }
-        internal static string ParentDatasourceFolderTemplateId
-        {
-            get { return Settings.GetSetting("JCore.Foundation.Datasources.ParentDatasourceFolderTemplateId", "{A8502920-D146-4545-83D0-CE9FB24046DB}"); }
+            get { return ID.Parse(Settings.GetSetting("JCore.Foundation.Datasources.DefaultRenderingDatasourceLocation", "{0DE95AE4-41AB-4D01-9EB0-67441B7C2450}")); }
         }
 
         internal static string DatasourcesRootId(Item item)

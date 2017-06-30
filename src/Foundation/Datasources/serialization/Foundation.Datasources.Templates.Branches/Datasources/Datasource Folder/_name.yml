@@ -1,0 +1,14 @@
+﻿---
+ID: "971cb458-bb19-4f6c-b245-ff853c7e4ce2"
+Parent: "bc0f702c-6124-429d-a861-fdb7ac8f6e0c"
+Template: "a8502920-d146-4545-83d0-ce9fb24046db"
+Path: /sitecore/templates/Branches/Foundation/Datasources/Datasource Folder/$name
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20170623T160436Z

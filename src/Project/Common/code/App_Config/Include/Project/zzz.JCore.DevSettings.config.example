@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<configuration xmlns:patch="http://www.sitecore.net/xmlconfig/">
+  <sitecore>
+    <sc.variable name="sourceFolder" value="C:\Git\JCore.Sitecore.DatasourceAutomation\src" />
+    <sc.variable name="rootHostName" value="datasources.local" />
+  </sitecore>
+</configuration>

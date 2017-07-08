@@ -37,9 +37,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JCore.Foundation.SitecoreEx
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JCore.Foundation.SitecoreExtensions.Tests", "src\Foundation\Sitecore Extensions\tests\JCore.Foundation.SitecoreExtensions.Tests.csproj", "{85F735B7-9BEE-43C3-94DF-539CE267F0B9}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{3E33DA08-FF81-4531-86C3-30CFB80F22EB}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Datasources", "Datasources", "{3E33DA08-FF81-4531-86C3-30CFB80F22EB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Website", "src\Project\Common\code\Common.Website.csproj", "{03810978-BFDF-4985-AA30-8A288A04AF03}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JCore.Common.Website", "src\Project\Common\code\JCore.Common.Website.csproj", "{03810978-BFDF-4985-AA30-8A288A04AF03}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Datasources", "Datasources", "{CF4BBA5E-B71F-4477-8EF0-19F32F0C22D8}"
 EndProject

@@ -16,7 +16,7 @@ namespace JCore.Foundation.Datasources
         {
             if (item == null)
                 return string.Empty;
-            var currentSiteContext = item.Paths.Path.GetSiteContext();
+            var currentSiteContext = item.GetSiteContext();
             return currentSiteContext != null ? currentSiteContext.Properties["datasourceRootItem"] : null;
         }
 
@@ -24,7 +24,7 @@ namespace JCore.Foundation.Datasources
         {
             if (item == null)
                 return string.Empty;
-            var currentSiteContext = item.Paths.Path.GetSiteContext();
+            var currentSiteContext = item.GetSiteContext();
             return currentSiteContext != null ? string.Concat(currentSiteContext.RootPath, currentSiteContext.StartItem) : null;
         }
         

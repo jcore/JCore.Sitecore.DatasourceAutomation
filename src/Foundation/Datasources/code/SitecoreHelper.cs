@@ -7,9 +7,9 @@ namespace JCore.Foundation.Datasources
 {
     internal static class SitecoreHelper
     {
-        internal static SiteContext GetSiteContext(this string path)
+        internal static SiteContext GetSiteContext(this Item item)
         {
-            foreach (var siteInfo in SiteContextFactory.Sites.Where(site => !string.IsNullOrWhiteSpace(string.Concat(site.RootPath, site.StartItem)) && path.StartsWith(string.Concat(site.RootPath, site.StartItem), true)))
+            foreach (var siteInfo in SiteContextFactory.Sites.Where(site => site.Database.ToLowerInvariant() == item.Database.Name.ToLowerInvariant() && !string.IsNullOrWhiteSpace(string.Concat(site.RootPath, site.StartItem)) && item.Paths.FullPath.StartsWith(string.Concat(site.RootPath, site.StartItem), true)))
             {
                 return SiteContextFactory.GetSiteContext(siteInfo.Name);
             }

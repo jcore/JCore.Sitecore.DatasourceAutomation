@@ -30,7 +30,7 @@ namespace JCore.Foundation.Datasources.Commands
             Assert.ArgumentNotNull(context, "context");
             if (context.Items.Length != 1)
                 return CommandState.Disabled;
-            if (!string.IsNullOrWhiteSpace(context.Items[0][NonChildDatasourceSupport.Fields.DatasourceFolderFieldId]))
+            if (!string.IsNullOrWhiteSpace(context.Items[0][NonChildDatasourceSupport.Fields.DatasourceFolderFieldId]) || TemplateManager.IsStandardValuesHolder(context.Items[0]))
                 return CommandState.Disabled;
             return base.QueryState(context);
         }

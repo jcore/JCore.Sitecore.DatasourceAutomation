@@ -21,7 +21,7 @@ namespace JCore.Foundation.Datasources.Repositories
         /// <param name="item">The item.</param>
         public void CreateItemDatasource(Item item)
         {
-            if (!item.IsDerived(NonChildDatasourceSupport.ID) || !string.IsNullOrWhiteSpace(item[NonChildDatasourceSupport.Fields.DatasourceFolderFieldId]))
+            if (!item.IsDerived(NonChildDatasourceSupport.ID) || !string.IsNullOrWhiteSpace(item[NonChildDatasourceSupport.Fields.DatasourceFolderFieldId]) || TemplateManager.IsStandardValuesHolder(item))
             {
                 return;
             }

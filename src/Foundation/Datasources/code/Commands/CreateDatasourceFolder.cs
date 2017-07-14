@@ -1,5 +1,6 @@
 ﻿using JCore.Foundation.Datasources.Repositories;
 using Sitecore.Data.Items;
+using Sitecore.Data.Managers;
 using Sitecore.Diagnostics;
 using Sitecore.Shell.Framework.Commands;
 using System;

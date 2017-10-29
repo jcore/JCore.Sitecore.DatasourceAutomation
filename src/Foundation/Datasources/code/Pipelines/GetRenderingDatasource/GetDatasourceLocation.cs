@@ -4,7 +4,7 @@ using Sitecore.Diagnostics;
 using Sitecore.Pipelines.GetRenderingDatasource;
 using System.Linq;
 using static JCore.Foundation.Datasources.Templates;
-using JCore.Foundation.SitecoreExtensions.Extensions;
+using JCore.Foundation.Datasources.Extensions;
 
 namespace JCore.Foundation.Datasources.Pipelines.GetRenderingDatasource
 {

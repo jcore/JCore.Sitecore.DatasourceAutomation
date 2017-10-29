@@ -1,7 +1,6 @@
 ﻿using Sitecore.Data.Items;
 using Sitecore.Configuration;
 using Sitecore.Data;
-using JCore.Foundation.SitecoreExtensions.Extensions;
 
 namespace JCore.Foundation.Datasources
 {

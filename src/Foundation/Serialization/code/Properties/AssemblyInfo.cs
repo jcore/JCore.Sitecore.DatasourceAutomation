@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("XCentium/California Association of Realtors")]
 [assembly: AssemblyProduct("Car.Foundation.Serialization")]
-[assembly: AssemblyCopyright("Copyright © CAR 2017")]
+[assembly: AssemblyCopyright("Copyright © JCore 2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

@@ -7,7 +7,7 @@ using Sitecore.Data;
 using Sitecore;
 using Sitecore.Data.Fields;
 using Sitecore.Layouts;
-using JCore.Foundation.SitecoreExtensions.Extensions;
+using JCore.Foundation.Datasources.Extensions;
 using static JCore.Foundation.Datasources.Templates;
 using JCore.Foundation.Datasources;
 
@@ -38,6 +38,15 @@ namespace JCore.Foundation.Datasources.Repositories
                 Item pageDatasourceItem = null;
                 var homeItemPath = item.SiteHomeItem();
                 var homeItem = item.Database.GetItem(homeItemPath);
+                if (homeItem != null && item.TemplateID == homeItem.TemplateID)
+                {
+                    requireDatasourcePath = string.Format("{0}/Content", datasourceItem.Paths.Path);
+                    pageDatasourceItem = CreateDataSourceItem(item.Database, requireDatasourcePath, DatasourceSubfolderTemplate.ID, datasourceItem, true);
+                    if (pageDatasourceItem == null)
+                    {
+                        return;
+                    }
+                }
                 if (homeItem != null && item.Parent.ID == homeItem.ID)
                 {
                     requireDatasourcePath = string.Format("{0}/{1}", datasourceItem.Paths.Path, item.Name);
@@ -46,8 +55,6 @@ namespace JCore.Foundation.Datasources.Repositories
                     {
                         return;
                     }
-                    //requireDatasourcePath = string.Format("{0}/{1}", datasourceItem.Paths.Path, pageDatasourceItem.Name);
-                    //pageDatasourceItem = CreateDataSourceItem(item.Database, requireDatasourcePath, DatasourceSubfolderTemplate.ID, datasourceItem, true);
                 }
                 else if (homeItem != null)
                 {

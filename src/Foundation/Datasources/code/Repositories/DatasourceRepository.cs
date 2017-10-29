@@ -10,6 +10,7 @@ using Sitecore.Layouts;
 using JCore.Foundation.Datasources.Extensions;
 using static JCore.Foundation.Datasources.Templates;
 using JCore.Foundation.Datasources;
+using Sitecore.Diagnostics;
 
 namespace JCore.Foundation.Datasources.Repositories
 {
@@ -23,6 +24,7 @@ namespace JCore.Foundation.Datasources.Repositories
         {
             if (!item.IsDerived(NonChildDatasourceSupport.ID) || !string.IsNullOrWhiteSpace(item[NonChildDatasourceSupport.Fields.DatasourceFolderFieldId]) || TemplateManager.IsStandardValuesHolder(item))
             {
+                Log.Info("DATASOURCES MODULE: Context item doesn't inherit _NonChildDatasource template", this);
                 return;
             }
             var datasourceItemId = ConfigSettings.DatasourcesRootId(item);
@@ -32,6 +34,7 @@ namespace JCore.Foundation.Datasources.Repositories
                 var datasourceItem = item.Database.GetItem(datasourceItemId);
                 if (datasourceItem == null)
                 {
+                    Log.Info("DATASOURCES MODULE: JCore.Foundation.Datasources.DefaultRenderingDatasourceLocation is not defined or item with specified ID doesn't exist", this);
                     return;
                 }
                 string requireDatasourcePath;
@@ -44,6 +47,7 @@ namespace JCore.Foundation.Datasources.Repositories
                     pageDatasourceItem = CreateDataSourceItem(item.Database, requireDatasourcePath, DatasourceSubfolderTemplate.ID, datasourceItem, true);
                     if (pageDatasourceItem == null)
                     {
+                        Log.Info("DATASOURCES MODULE: Target Path for datasource item was not created for home page", this);
                         return;
                     }
                 }
@@ -53,6 +57,7 @@ namespace JCore.Foundation.Datasources.Repositories
                     pageDatasourceItem = CreateDataSourceItem(item.Database, requireDatasourcePath, DatasourceFolderBranch.ID, datasourceItem, true);
                     if (pageDatasourceItem == null)
                     {
+                        Log.Info("DATASOURCES MODULE: Target Path for datasource item was not created for first level page", this);
                         return;
                     }
                 }
@@ -62,6 +67,7 @@ namespace JCore.Foundation.Datasources.Repositories
                     pageDatasourceItem = CreateDataSourceItem(item.Database, requireDatasourcePath, DatasourceFolderBranch.ID, datasourceItem, true);
                     if (pageDatasourceItem == null)
                     {
+                        Log.Info("DATASOURCES MODULE: Target Path for datasource item was not created", this);
                         return;
                     }
                     requireDatasourcePath = string.Format("{0}", pageDatasourceItem.Paths.FullPath);
@@ -205,6 +211,7 @@ namespace JCore.Foundation.Datasources.Repositories
             var device = item.Database.GetItem(Constants.DefaultDevice);
             if (device == null || dataSourceItem == null || item == null)
             {
+                Log.Info("DATASOURCES MODULE: Either device, dataSourceItem or item is null", this);
                 return;
             }
             var renderings = item.Visualization.GetRenderings(device, false);
@@ -271,10 +278,13 @@ namespace JCore.Foundation.Datasources.Repositories
         {
             if (string.IsNullOrWhiteSpace(targetItemPath))
             {
+                Log.Info("DATASOURCES MODULE: Target Path for datasource item is empty", this);
                 return null;
             }
             try
             {
+                Log.Info("DATASOURCES MODULE: Target Path for datasource item:" + targetItemPath, this);
+
                 var datasourceFolderItem = db.GetItem(targetItemPath);
                 Item dataSourceItem;
                 if (datasourceFolderItem == null || !useExisting)
